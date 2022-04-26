@@ -57,7 +57,7 @@ public class Processor {
 		return data;
 	}
 
-	public List<CombinedDTO> getLatestFeeds() {
+	public List<CombinedDTO> getLatestFeeds() throws Exception {
 
 		List<CombinedDTO> result = new ArrayList<CombinedDTO>();
 
@@ -80,7 +80,8 @@ public class Processor {
 					element.setWebURL(entry.getLink());
 					element.setTitle(entry.getTitle());
 					element.setPublishingDate(df.format(entry.getPublishedDate()));
-
+					
+					// parse image url from contents
 					Pattern p = Pattern.compile("src=\"(.*?)\"");
 					Matcher m = p.matcher(entry.getContents().get(0).getValue());
 					if (m.find()) {
@@ -97,6 +98,7 @@ public class Processor {
 			}
 		} catch (Exception e) {
 			System.out.println(e);
+			throw new Exception();
 		}
 		return result;
 	}
