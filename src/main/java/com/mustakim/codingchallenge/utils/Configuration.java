@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
+import org.springframework.aop.ThrowsAdvice;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -21,7 +23,7 @@ public class Configuration {
 	private String latestURI;
 	private String rssURI;
 
-	public void readConfFile() throws IOException {
+	public void readConfFile() throws Exception{
 
 		Properties prop = new Properties();
 		InputStream input = null;
@@ -32,8 +34,10 @@ public class Configuration {
 			prop.load(input);
 		} catch (FileNotFoundException ex) {
 			System.out.println("CONFIGURATION FILE NOT FOUND !!" + ex);
+			throw new Exception();
 		} catch (IOException ex) {
 			System.out.println(" CANNOT LOAD CONFIGURATION FILE !!");
+			throw new Exception();
 		}
 
 		setBaseURI(prop.getProperty("baseURI"));

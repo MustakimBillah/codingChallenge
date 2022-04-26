@@ -1,5 +1,6 @@
 package com.mustakim.codingchallenge.rest;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -26,18 +27,17 @@ public class Controller {
     
 	@Autowired
     private Processor processor;
-    
- 
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-
 	public Map<String, List<CombinedDTO>> getResult() {
+		
+		Map<String, List<CombinedDTO>> finalResult = new HashMap<>();
 
 		try {
 			Configuration.getInstance().readConfFile();
-		} catch (IOException e) {
-
-			System.out.println(e);
+		} catch (Exception ex) {
+			finalResult.put("data", null);
+			return finalResult;
 		}
 
 		int latestXkcd = processor.getLatestXkcdNum();
@@ -77,7 +77,6 @@ public class Controller {
 			}
 		});
 
-		Map<String, List<CombinedDTO>> finalResult = new HashMap<>();
 		finalResult.put("data", result);
 
 		return finalResult;
