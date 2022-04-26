@@ -71,7 +71,7 @@ public class Controller {
 			List<CombinedDTO> rssData = processor.getLatestFeeds();
 			result.addAll(rssData);
 			
-			//sorting date wise in decending order
+			//sorting date wise in descending order
 			Collections.sort(result, new Comparator<CombinedDTO>() {
 				@Override
 				public int compare(CombinedDTO object1, CombinedDTO object2) {
