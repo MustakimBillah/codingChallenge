@@ -1,4 +1,4 @@
-package com.mustakim.codingchallenge.rest;
+package com.mustakim.codingchallenge.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,7 +9,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class combinedDTO {
+public class CombinedDTO {
 	public String pictureURL;
 	public String title;
 	public String webURL;

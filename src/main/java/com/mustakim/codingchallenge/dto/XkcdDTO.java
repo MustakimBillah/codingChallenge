@@ -1,4 +1,4 @@
-package com.mustakim.codingchallenge.rest;
+package com.mustakim.codingchallenge.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
